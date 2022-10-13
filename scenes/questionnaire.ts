@@ -3,9 +3,7 @@ import { Markup, Composer, Scenes } from "telegraf";
 const fullnameStep = new Composer<Scenes.WizardContext>();
 fullnameStep.action("questionaire", async (ctx) => {
   try {
-    ctx.wizard.state.fullname = await ctx.reply(
-      "Шаг 1 - как мне к вам обращаться? Укажите ваше имя!"
-    );
+    await ctx.reply("Шаг 1 - как мне к вам обращаться? Укажите ваше имя!");
     return ctx.wizard.next();
   } catch (e) {
     console.error(e);
