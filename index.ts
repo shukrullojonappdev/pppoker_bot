@@ -26,7 +26,7 @@ bot.action("step_1", async (ctx) => {
   try {
     await ctx.reply("Шаг 1 - как мне к вам обращаться? Укажите ваше имя!");
     await bot.on("text", async (ctx) => {
-      const name = await ctx.message.text;
+      name = await ctx.message.text;
       if (/^[a-zа-ё ]*$/i.test(name)) {
         await ctx.reply(
           "Шаг 2 - ваш ID в приложении PPPoker! Укажите, пожалуйста, ваш ID в PPPoker"
