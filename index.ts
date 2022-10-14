@@ -1,5 +1,5 @@
 import { Markup, Scenes, session, Telegraf } from "telegraf";
-import questionnaireScene from "./scenes/questionnaire";
+import { questionnaireScene, myData } from "./scenes/questionnaire";
 import MyContext from "./interfaces";
 
 const bot = new Telegraf<MyContext>(
@@ -25,16 +25,31 @@ bot.start(async (ctx) => {
 
 bot.action("questionaire", async (ctx) => {
   try {
-    // ctx.myProps = {
-    //   fullname: "",
-    //   pppokerId: "",
-    //   phoneNumber: "",
-    //   usdTexId: "",
-    // };
     await ctx.scene.enter("questionnaireWizard");
   } catch (e) {
     console.error(e);
   }
+});
+
+bot.hears("🙎‍♂Мой профиль", async (ctx) => {
+  await ctx.reply(
+    `💁Ваши данные находятся тут! \nНомер телефона: ${myData.phoneNumber} \nID в приложении: ${myData.pppokerId} \nАдрес кошелька: ${myData.usdTexId}`,
+    Markup.inlineKeyboard([
+      [Markup.button.callback("⚙️Изменить данные", "changeData")],
+      [Markup.button.callback("🔙Назад", "back")],
+    ])
+  );
+});
+// bot.hears("", async (ctx) => {
+//   await ctx.reply();
+// });
+bot.hears("📞Связь с оператором", async (ctx) => {
+  await ctx.replyWithHTML(
+    `Привет, @${ctx.from.username}! \n\n<b>Это связь с командой</b>⚙️ тех.поддержки проекта. \n\n<b>Напиши вопрос</b> в поле ввода сообщений. \n\nА если вопросов нет 👉 жми [Завершить диалог].`,
+    Markup.inlineKeyboard([
+      Markup.button.callback("❌📞Завершить диалог", "stopDialog"),
+    ])
+  );
 });
 
 bot.launch();

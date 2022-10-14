@@ -89,4 +89,4 @@ const questionnaireScene = new Scenes.WizardScene(
   congulationStep
 );
 
-export default questionnaireScene;
+export { questionnaireScene, myData };
