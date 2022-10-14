@@ -1,11 +1,12 @@
 import { Markup, Scenes, session, Telegraf } from "telegraf";
-import questionnaireScene from "./scenes/Questionnaire";
+import questionnaireScene from "./scenes/questionnaire";
+import MyContext from "./interfaces";
 
-const bot = new Telegraf<Scenes.WizardContext>(
+const bot = new Telegraf<MyContext>(
   "5420356035:AAG_za1nsfUZvVDt-KBPJuMzLTqdOK2lOjw"
 );
 
-const stage = new Scenes.Stage<Scenes.WizardContext>([questionnaireScene]);
+const stage = new Scenes.Stage<MyContext>([questionnaireScene]);
 bot.use(session());
 bot.use(stage.middleware());
 
@@ -24,6 +25,12 @@ bot.start(async (ctx) => {
 
 bot.action("questionaire", async (ctx) => {
   try {
+    // ctx.myProps = {
+    //   fullname: "",
+    //   pppokerId: "",
+    //   phoneNumber: "",
+    //   usdTexId: "",
+    // };
     await ctx.scene.enter("questionnaireWizard");
   } catch (e) {
     console.error(e);
