@@ -1,13 +1,13 @@
 import { Markup, Composer, Scenes } from "telegraf";
-import { userRepository } from "../../database/repositories";
-import MyContext, { IQuestionaire } from "../interfaces/interfaces";
+import { IUser } from "../interfaces/user.interface";
+import { User } from "../models/user.model";
 
 let myData: any = null;
 
-const fullnameStep = new Composer<MyContext>();
+const fullnameStep = new Composer<Scenes.WizardContext>();
 fullnameStep.action("questionaire", async (ctx) => {
   try {
-    myData = ctx.wizard.state as IQuestionaire;
+    myData = ctx.wizard.state as IUser;
     await ctx.replyWithHTML(
       "<b>Шаг 1 - как мне к вам обращаться?</b> \nУкажите ваше имя!"
     );
@@ -17,7 +17,7 @@ fullnameStep.action("questionaire", async (ctx) => {
   }
 });
 
-const pppokerStep = new Composer<MyContext>();
+const pppokerStep = new Composer<Scenes.WizardContext>();
 pppokerStep.on("text", async (ctx) => {
   myData.fullname = ctx.message.text;
   if (/^[a-zа-ё ]+$/i.test(myData.fullname)) {
@@ -32,7 +32,7 @@ pppokerStep.on("text", async (ctx) => {
   }
 });
 
-const phoneNumStep = new Composer<MyContext>();
+const phoneNumStep = new Composer<Scenes.WizardContext>();
 phoneNumStep.on("text", async (ctx) => {
   myData.pppokerId = ctx.message.text;
   if (/^[0-9]+$/i.test(myData.pppokerId)) {
@@ -45,7 +45,7 @@ phoneNumStep.on("text", async (ctx) => {
   }
 });
 
-const usdTexStep = new Composer<MyContext>();
+const usdTexStep = new Composer<Scenes.WizardContext>();
 usdTexStep.on("text", async (ctx) => {
   myData.phoneNumber = ctx.message.text;
   if (
@@ -64,12 +64,15 @@ usdTexStep.on("text", async (ctx) => {
   }
 });
 
-const congulationStep = new Composer<MyContext>();
+const congulationStep = new Composer<Scenes.WizardContext>();
 congulationStep.on("text", async (ctx) => {
   myData.usdTexId = ctx.message.text;
   myData.username = ctx.from.username;
+
+  const user = new User(myData);
+  await user.save();
   console.log(myData);
-  await userRepository.save(myData);
+
   await ctx.reply("🥳");
   await ctx.reply(
     "Поздравляем! Вы прошли заполнение анкеты, и получаете бонус в размере 5 фишек на свой баланс! Теперь вам доступен весь функционал бота.",

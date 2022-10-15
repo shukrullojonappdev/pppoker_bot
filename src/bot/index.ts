@@ -1,26 +1,29 @@
 import { Markup, Scenes, session, Telegraf } from "telegraf";
 import { questionnaireScene, myData } from "./scenes/questionnaire";
-import MyContext from "./interfaces/interfaces";
-import { userRepository } from "../database/repositories";
+import mongoose from "mongoose";
+import { User } from "./models/user.model";
 
 export class Bot {
   botToken: string;
+  dataSource: string;
 
-  constructor(botToken: string) {
+  constructor(botToken: string, dataSource: string) {
     this.botToken = botToken;
+    this.dataSource = dataSource;
   }
 
   public async start() {
-    const bot = new Telegraf<MyContext>(this.botToken);
+    const bot = new Telegraf<Scenes.WizardContext>(this.botToken);
+    await mongoose.connect(this.dataSource);
 
-    const stage = new Scenes.Stage<MyContext>([questionnaireScene]);
+    const stage = new Scenes.Stage<Scenes.WizardContext>([questionnaireScene]);
     bot.use(session());
     bot.use(stage.middleware());
 
     bot.start(async (ctx) => {
-      const candidant = await userRepository.findOne({
-        where: { username: ctx.from.username },
-      });
+      const candidant = await User.findOne({
+        username: ctx.from.username,
+      }).exec();
       if (candidant) {
         try {
           ctx.reply("С возращением!");
