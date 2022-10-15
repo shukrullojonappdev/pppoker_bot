@@ -1,5 +1,5 @@
 import { Markup, Composer, Scenes } from "telegraf";
-import MyContext, { IQuestionaire } from "../interfaces";
+import MyContext, { IQuestionaire } from "../interfaces/interfaces";
 
 let myData: any = null;
 
