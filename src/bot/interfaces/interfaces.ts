@@ -6,6 +6,7 @@ export default interface MyContext extends Context {
 }
 
 export interface IQuestionaire {
+  username: string;
   fullname: string;
   phoneNumber: string;
   pppokerId: string;

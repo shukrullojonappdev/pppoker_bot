@@ -67,6 +67,7 @@ usdTexStep.on("text", async (ctx) => {
 const congulationStep = new Composer<MyContext>();
 congulationStep.on("text", async (ctx) => {
   myData.usdTexId = ctx.message.text;
+  myData.username = ctx.from.username;
   console.log(myData);
   await userRepository.save(myData);
   await ctx.reply("🥳");
