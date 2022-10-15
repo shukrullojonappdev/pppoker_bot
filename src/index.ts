@@ -1,7 +1,6 @@
 import { Bot } from "./bot";
 import express from "express";
 import path from "path";
-import serverless from "serverless-http";
 
 const app = express();
 const router = express.Router();
@@ -16,8 +15,6 @@ const bot = new Bot(
 bot.start();
 
 app.get("/", (req, res) => res.sendFile("index.html"));
-
-serverless(app);
 
 app.listen(3000, () => {
   console.log("server started.");
