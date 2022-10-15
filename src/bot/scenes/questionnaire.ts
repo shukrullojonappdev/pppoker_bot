@@ -1,4 +1,5 @@
 import { Markup, Composer, Scenes } from "telegraf";
+import { userRepository } from "../../database/repositories";
 import MyContext, { IQuestionaire } from "../interfaces/interfaces";
 
 let myData: any = null;
@@ -67,6 +68,7 @@ const congulationStep = new Composer<MyContext>();
 congulationStep.on("text", async (ctx) => {
   myData.usdTexId = ctx.message.text;
   console.log(myData);
+  await userRepository.save(myData);
   await ctx.reply("🥳");
   await ctx.reply(
     "Поздравляем! Вы прошли заполнение анкеты, и получаете бонус в размере 5 фишек на свой баланс! Теперь вам доступен весь функционал бота.",
