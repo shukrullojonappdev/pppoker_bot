@@ -10,6 +10,7 @@ const app = (0, express_1.default)();
 const router = express_1.default.Router();
 app.use(express_1.default.static(path_1.default.join(__dirname, "../views")));
 app.use("/", router);
+app.set("views", path_1.default.join(__dirname, "../views"));
 app.set("view engine", "html");
 const bot = new bot_1.Bot("5420356035:AAG_za1nsfUZvVDt-KBPJuMzLTqdOK2lOjw", "mongodb+srv://shukrullojondev:1234@pppokerbotdatabase.7zxbw4z.mongodb.net/?retryWrites=true&w=majority");
 bot.start();
