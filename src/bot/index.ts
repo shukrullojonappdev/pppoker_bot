@@ -1,5 +1,5 @@
 import { Markup, Scenes, session, Telegraf } from "telegraf";
-import { questionnaireScene, myData } from "./scenes/questionnaire";
+import { questionnaireScene, myData } from "./scenes/questionnaire.scene";
 import mongoose from "mongoose";
 import { User } from "./models/user.model";
 
