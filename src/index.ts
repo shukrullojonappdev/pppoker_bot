@@ -6,6 +6,7 @@ const app = express();
 const router = express.Router();
 
 app.use(express.static(path.join(__dirname, "views")));
+app.use("/", router);
 
 app.set("view engine", "html");
 
