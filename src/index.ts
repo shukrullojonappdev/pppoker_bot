@@ -8,6 +8,7 @@ const router = express.Router();
 app.use(express.static(path.join(__dirname, "../views")));
 app.use("/", router);
 
+app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "html");
 
 const bot = new Bot(
