@@ -23,6 +23,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT || 5000, () => {
   console.log("server started.");
 });
