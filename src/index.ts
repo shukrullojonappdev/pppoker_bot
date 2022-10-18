@@ -4,7 +4,7 @@ import path from "path";
 import compression from "compression";
 import bodyParser from "body-parser";
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const app = express();
 const router = express.Router();
