@@ -1,0 +1,10 @@
+.buttons {
+  width: 100%;
+  padding: 10px;
+}
+
+.button {
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+}
