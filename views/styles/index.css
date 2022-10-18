@@ -1,10 +1,29 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
 .buttons {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .button {
   width: 100%;
   text-align: center;
-  padding: 5px 0;
+  padding: 8px 0;
+  margin: 5px 0;
+  border: 0;
+  border-radius: 8px;
 }
