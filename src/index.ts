@@ -4,6 +4,8 @@ import path from "path";
 import compression from "compression";
 import bodyParser from "body-parser";
 
+const PORT = 3000;
+
 const app = express();
 const router = express.Router();
 
@@ -21,6 +23,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("server started.");
 });
