@@ -53,8 +53,11 @@ export class Bot {
     });
 
     bot.hears("🙎‍♂Мой профиль", async (ctx) => {
+      const user = await User.findOne({
+        username: ctx.from.username,
+      }).exec();
       await ctx.reply(
-        `💁Ваши данные находятся тут! \nНомер телефона: ${myData.phoneNumber} \nID в приложении: ${myData.pppokerId} \nАдрес кошелька: ${myData.usdTexId}`,
+        `💁Ваши данные находятся тут! \nНомер телефона: ${user?.phoneNumber} \nID в приложении: ${user?.pppokerId} \nАдрес кошелька: ${user?.usdTexId}`,
         Markup.inlineKeyboard([
           [Markup.button.callback("⚙️Изменить данные", "changeData")],
           [Markup.button.callback("🔙Назад", "back")],
