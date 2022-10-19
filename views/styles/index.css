@@ -10,6 +10,8 @@ a,
 a:visited,
 a:active {
   text-decoration: none;
+  width: 100%;
+  color: black;
 }
 
 .buttons {
