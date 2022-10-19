@@ -31,3 +31,8 @@ a:active {
   border: 0;
   border-radius: 8px;
 }
+
+.club {
+  display: flex;
+  justify-content: space-between;
+}

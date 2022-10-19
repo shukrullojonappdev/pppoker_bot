@@ -3,16 +3,16 @@ import path from "path";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  return res.sendFile(path.join(__dirname, "../views/index.html"));
+router.get("/", async (req, res) => {
+  return await res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-router.get("/balance", (req, res) => {
-  return res.sendFile(path.join(__dirname, "../views/balance.html"));
+router.get("/buyChips", async (req, res) => {
+  return await res.sendfile(path.join(__dirname, "../views/buyChips.html"));
 });
 
-router.get("/hello", (req, res) => {
-  return "hello";
+router.get("/balance", async (req, res) => {
+  return await res.sendFile(path.join(__dirname, "../views/balance.html"));
 });
 
 export default router;
