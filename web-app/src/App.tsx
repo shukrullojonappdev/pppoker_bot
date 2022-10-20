@@ -1,38 +1,48 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import "./App.css";
 
 export default function App() {
   return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/users">Users</Link>
-          </li>
-        </ul>
-      </nav>
-
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/balance" element={<Balance />} />
         <Route path="/users" element={<Users />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  return (
+    <>
+      <div className="buttons">
+        <Link to="/balance">
+          <button className="button">🔺Купить фишки</button>
+        </Link>
+        <Link to="/balance">
+          <button className="button">🔻Вывести фишки</button>
+        </Link>
+        <Link to="/balance">
+          <button className="button">🔗Перевести фишки</button>
+        </Link>
+        <Link to="/balance">
+          <button className="button">💰Мой баланс</button>
+        </Link>
+        <Link to="/about">
+          <button className="button">♠Список клубов</button>
+        </Link>
+        <Link to="/users">
+          <button className="button">💲Хочу стать агентом</button>
+        </Link>
+      </div>
+    </>
+  );
 }
 
-function About() {
-  return <h2>About</h2>;
+function Balance() {
+  return <h2>balance</h2>;
 }
 
 function Users() {
