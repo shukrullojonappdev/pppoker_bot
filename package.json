@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "tsc --build",
-    "start": "node dist/index.js"
+    "postinstall": "tsc --build && cd web-app && npm run build",
+    "start": " node dist/index.js"
   },
   "keywords": [],
   "author": "",

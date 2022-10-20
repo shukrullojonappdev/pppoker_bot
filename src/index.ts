@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(compression());
-app.use(express.static(path.join(__dirname, "../views")));
+app.use(express.static(path.join(__dirname, "../web-app/build")));
 app.use(bodyParser());
 
 app.use("/", router);
