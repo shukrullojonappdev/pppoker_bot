@@ -7,12 +7,12 @@ router.get("/", async (req, res) => {
   return await res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-router.get("/buyChips", async (req, res) => {
-  return await res.sendfile(path.join(__dirname, "../views/buyChips.html"));
-});
+// router.get("/buyChips", async (req, res) => {
+//   return await res.sendfile(path.join(__dirname, "../views/buyChips.html"));
+// });
 
-router.get("/balance", async (req, res) => {
-  return await res.sendFile(path.join(__dirname, "../views/balance.html"));
-});
+// router.get("/balance", async (req, res) => {
+//   return await res.sendFile(path.join(__dirname, "../views/balance.html"));
+// });
 
 export default router;
