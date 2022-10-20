@@ -13,11 +13,15 @@
       <a href="buyChips"> <button class="button">🔺Купить фишки</button></a>
       <a href="#"> <button class="button">🔻Вывести фишки</button></a>
       <a href="#"> <button class="button">🔗Перевести фишки</button></a>
-      <a href="./balance.html" target="_parent"
-        ><button class="button">💰Мой баланс</button></a
-      >
+      <button onclick="goto()" class="button">💰Мой баланс</button>
       <a href="#"> <button class="button">♠Список клубов</button></a>
       <a href="#"> <button class="button">💲Хочу стать агентом</button></a>
     </div>
+    <script>
+      let tg = window.Telegram.WebApp;
+      function goto() {
+        location.href = "/balance";
+      }
+    </script>
   </body>
 </html>
