@@ -13,7 +13,7 @@ a {
 
 .button {
   background: var(--tg-theme-button-color);
-  color: var(--tg-theme-button-text-color) s;
+  color: var(--tg-theme-button-text-color);
   width: 100%;
   padding: 10px 0;
   text-align: center;

@@ -1,6 +1,13 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+
+let myWindow = window as any;
+let tg = myWindow.Telegram.WebApp;
 
 export default function BuyChips() {
+  const navigate = useNavigate();
+  tg.BackButton.onClick(async () => await navigate("/"));
+
   return (
     <>
       <p>Выберите клуб, на который хотите приобрести фишки:</p>
