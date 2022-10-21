@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Routes, Route, Link, Outlet, useHref } from "react-router-dom";
+import { Routes, Route, Link, Outlet, useNavigate } from "react-router-dom";
 
 let myWindow = window as any;
 let tg = myWindow.Telegram.WebApp;
@@ -14,7 +14,8 @@ export default function Balance() {
 }
 
 function IndexBalance() {
-  tg.BackButton.onClick(useHref("/"));
+  const navigate = useNavigate();
+  tg.BackButton.onClick(async () => await navigate("/"));
   return (
     <>
       <p>На вашем счету: 40 USDT</p>
@@ -35,6 +36,8 @@ function IndexBalance() {
 }
 
 function RefillBalance() {
+  const navigate = useNavigate();
+  tg.BackButton.onClick(async () => await navigate("/balance"));
   return (
     <>
       <p>
@@ -55,6 +58,8 @@ function RefillBalance() {
 }
 
 function WithdrawUSDT() {
+  const navigate = useNavigate();
+  tg.BackButton.onClick(async () => await navigate("/balance"));
   return (
     <>
       <p> sdfgdsfhfh</p>
