@@ -10,6 +10,9 @@ import BuyChips from "./components/BuyChips";
 import ClubsList from "./components/ClubsList";
 import WithdrawChips from "./components/WithdrawChips";
 
+let myWindow = window as any;
+let tg = myWindow.Telegram.WebApp;
+
 export default function App() {
   return (
     <>
@@ -29,6 +32,7 @@ export default function App() {
 }
 
 function Home() {
+  tg.BackButton.hide();
   return (
     <>
       <div className="buttons">

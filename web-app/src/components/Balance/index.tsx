@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Routes, Route, Link, Outlet } from "react-router-dom";
-let myWindow = window as any;
+import { Routes, Route, Link, Outlet, useHref } from "react-router-dom";
 
+let myWindow = window as any;
 let tg = myWindow.Telegram.WebApp;
 
 export default function Balance() {
@@ -14,6 +14,7 @@ export default function Balance() {
 }
 
 function IndexBalance() {
+  tg.BackButton.onClick(useHref("/"));
   return (
     <>
       <p>На вашем счету: 40 USDT</p>
