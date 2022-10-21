@@ -16,3 +16,8 @@ p {
   text-align: left;
   padding: 10px 10px 0 10px;
 }
+
+body {
+  color: var(--tg-theme-text-color);
+  background: var(--tg-theme-bg-color);
+}
