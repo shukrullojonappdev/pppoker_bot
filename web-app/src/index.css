@@ -10,5 +10,9 @@ a,
 a:visited,
 a:active {
   text-decoration: none;
-  color: black;
+}
+
+p {
+  text-align: left;
+  padding: 10px 10px 0 10px;
 }
