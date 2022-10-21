@@ -6,6 +6,8 @@ let tg = myWindow.Telegram.WebApp;
 
 export default function BuyChips() {
   const navigate = useNavigate();
+
+  tg.BackButton.show();
   tg.BackButton.onClick(async () => await navigate("/"));
 
   return (

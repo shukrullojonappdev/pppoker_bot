@@ -51,14 +51,10 @@ function Home() {
         <Link to="/clubsList">
           <button className="button">♠Список клубов</button>
         </Link>
-        <Link to="/users">
+        <Link to="/buyChips">
           <button className="button">💲Хочу стать агентом</button>
         </Link>
       </div>
     </>
   );
-}
-
-function Users() {
-  return <h2>Users</h2>;
 }
