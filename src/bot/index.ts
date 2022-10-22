@@ -27,6 +27,12 @@ export class Bot {
       if (candidant) {
         try {
           ctx.reply("С возращением!");
+          Markup.keyboard([
+            ["🙎‍♂Мой профиль", "🏡На главную"],
+            ["📞Связь с оператором"],
+          ])
+            .oneTime()
+            .resize();
         } catch (e) {
           console.error(e);
         }
