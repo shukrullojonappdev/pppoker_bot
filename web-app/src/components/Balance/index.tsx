@@ -35,6 +35,16 @@ function IndexBalance() {
   );
 }
 
+function EmptyBalance() {
+  return (
+    <>
+      <p>❌На вашем балансе нет средств!</p>
+      <p> Пополните баланс бота, перейдя по кнопке</p>
+      <p>"💰Мой баланс"</p>
+    </>
+  );
+}
+
 function RefillBalance() {
   const navigate = useNavigate();
   tg.BackButton.onClick(async () => await navigate("/balance"));
@@ -67,4 +77,4 @@ function WithdrawUSDT() {
   );
 }
 
-export { IndexBalance, RefillBalance, WithdrawUSDT };
+export { IndexBalance, RefillBalance, WithdrawUSDT, EmptyBalance };

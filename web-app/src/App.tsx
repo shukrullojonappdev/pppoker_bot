@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import "./App.css";
 import Balance, {
+  EmptyBalance,
   IndexBalance,
   RefillBalance,
   WithdrawUSDT,
@@ -14,11 +15,16 @@ let myWindow = window as any;
 let tg = myWindow.Telegram.WebApp;
 
 export default function App() {
+  const balance = 0;
+
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/buyChips" element={<BuyChips />} />
+        <Route
+          path="/buyChips"
+          element={balance > 0 ? <BuyChips /> : <EmptyBalance />}
+        />
         <Route path="/withdrawChips" element={<WithdrawChips />} />
         <Route path="/balance" element={<Balance />}>
           <Route index element={<IndexBalance />} />
