@@ -71,7 +71,6 @@ congulationStep.on("text", async (ctx) => {
 
   const user = new User(myData);
   await user.save();
-  console.log(myData);
 
   await ctx.reply("🥳");
   await ctx.reply(

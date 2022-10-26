@@ -87,6 +87,7 @@ export class Bot {
 
     bot.action("home", async (ctx) => {
       await ctx.reply(
+        "",
         Markup.keyboard([
           [
             Markup.button.callback("🙎‍♂Мой профиль", ""),
