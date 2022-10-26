@@ -1,6 +1,7 @@
 import { Markup, Composer, Scenes } from "telegraf";
 import { IUser } from "../interfaces/user.interface";
 import { User } from "../models/user.model";
+import { mainKeyboard } from "../index";
 
 let myData: any = null;
 
@@ -75,12 +76,7 @@ congulationStep.on("text", async (ctx) => {
   await ctx.reply("🥳");
   await ctx.reply(
     "Поздравляем! Вы прошли заполнение анкеты, и получаете бонус в размере 5 фишек на свой баланс! Теперь вам доступен весь функционал бота.",
-    Markup.keyboard([
-      ["🙎‍♂Мой профиль", "🏡На главную"],
-      ["📞Связь с оператором"],
-    ])
-      .oneTime()
-      .resize()
+    mainKeyboard
   );
   return ctx.scene.leave();
 });
