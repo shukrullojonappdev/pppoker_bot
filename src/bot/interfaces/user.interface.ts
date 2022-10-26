@@ -5,4 +5,5 @@ export interface IUser {
   pppokerId: string;
   usdTexId: string;
   chips?: number;
+  roles: [string];
 }

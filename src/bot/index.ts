@@ -29,11 +29,8 @@ export class Bot {
           ctx.reply(
             "С возращением!",
             Markup.keyboard([
-              [
-                Markup.button.callback("🙎‍♂Мой профиль", "myProfile"),
-                Markup.button.callback("🏡На главную", "home"),
-              ],
-              [Markup.button.callback("📞Связь с оператором", "connectUs")],
+              ["🙎‍♂Мой профиль", "🏡На главную"],
+              ["📞Связь с оператором"],
             ])
               .oneTime()
               .resize()
