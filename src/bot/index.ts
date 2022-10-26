@@ -54,7 +54,6 @@ export default async function Bot(botToken: string, dataSource: string) {
     const user = await User.findOne({
       username: ctx.from.username,
     }).exec();
-    await ctx.reply("", Markup.removeKeyboard());
     await ctx.reply(
       `💁Ваши данные находятся тут! \nНомер телефона: ${user?.phoneNumber} \nID в приложении: ${user?.pppokerId} \nАдрес кошелька: ${user?.usdTexId}`,
       Markup.inlineKeyboard([
