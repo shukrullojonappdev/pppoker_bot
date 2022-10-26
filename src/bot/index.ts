@@ -29,11 +29,8 @@ export class Bot {
           ctx.reply(
             "С возращением!",
             Markup.keyboard([
-              [
-                Markup.button.callback("🙎‍♂Мой профиль", ""),
-                Markup.button.callback("🏡На главную", "home"),
-              ],
-              [Markup.button.callback("📞Связь с оператором", "connect")],
+              ["🙎‍♂Мой профиль", "🏡На главную"],
+              ["📞Связь с оператором"],
             ])
               .oneTime()
               .resize()
@@ -63,9 +60,9 @@ export class Bot {
       }
     });
 
-    bot.action("profile", async (ctx) => {
+    bot.hears("🙎‍♂Мой профиль", async (ctx) => {
       const user = await User.findOne({
-        username: ctx.from?.username,
+        username: ctx.from.username,
       }).exec();
       await ctx.reply(
         `💁Ваши данные находятся тут! \nНомер телефона: ${user?.phoneNumber} \nID в приложении: ${user?.pppokerId} \nАдрес кошелька: ${user?.usdTexId}`,
@@ -76,27 +73,12 @@ export class Bot {
       );
     });
 
-    bot.action("connect", async (ctx) => {
+    bot.hears("📞Связь с оператором", async (ctx) => {
       await ctx.replyWithHTML(
-        `Привет, @${ctx.from?.username}! \n\n<b>Это связь с командой</b>⚙️ тех.поддержки проекта. \n\n<b>Напиши вопрос</b> в поле ввода сообщений. \n\nА если вопросов нет 👉 жми [Завершить диалог].`,
+        `Привет, @${ctx.from.username}! \n\n<b>Это связь с командой</b>⚙️ тех.поддержки проекта. \n\n<b>Напиши вопрос</b> в поле ввода сообщений. \n\nА если вопросов нет 👉 жми [Завершить диалог].`,
         Markup.inlineKeyboard([
           Markup.button.callback("❌📞Завершить диалог", "stopDialog"),
         ])
-      );
-    });
-
-    bot.action("home", async (ctx) => {
-      await ctx.reply(
-        "",
-        Markup.keyboard([
-          [
-            Markup.button.callback("🙎‍♂Мой профиль", ""),
-            Markup.button.callback("🏡На главную", "home"),
-          ],
-          [Markup.button.callback("📞Связь с оператором", "connect")],
-        ])
-          .oneTime()
-          .resize()
       );
     });
 
