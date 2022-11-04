@@ -8,7 +8,7 @@ const userSchema = new Schema<IUser>({
   phoneNumber: { type: String, required: true },
   usdTexId: { type: String, required: true },
   chips: { type: Number },
-  roles: { type: [String], default: ["User"] },
+roles: { type: [String], default: ["User"] },
 });
 
 export const User = model<IUser>("User", userSchema);
