@@ -1,7 +1,11 @@
 import { Markup, Scenes, session, Telegraf } from "telegraf";
 import { questionnaireScene, myData } from "./scenes/questionnaire.scene";
+import { dialogScene } from "./scenes/dialog.scene";
 import mongoose from "mongoose";
 import { User } from "./models/user.model";
+import { request } from "express";
+
+export let isSupport: boolean = false;
 
 export const mainKeyboard = Markup.keyboard([
   ["🙎‍♂Мой профиль", "🏡На главную"],
@@ -11,10 +15,10 @@ export const mainKeyboard = Markup.keyboard([
   .resize();
 
 export default async function Bot(botToken: string, dataSource: string) {
-  const bot = new Telegraf<Scenes.WizardContext>(botToken);
+  const bot = new Telegraf<any>(botToken);
   await mongoose.connect(dataSource);
 
-  const stage = new Scenes.Stage<Scenes.WizardContext>([questionnaireScene]);
+  const stage = new Scenes.Stage<any>([questionnaireScene, dialogScene]);
   bot.use(session());
   bot.use(stage.middleware());
 
@@ -64,12 +68,30 @@ export default async function Bot(botToken: string, dataSource: string) {
   });
 
   bot.hears("📞Связь с оператором", async (ctx) => {
+    ctx.scene.enter("dialogScene");
+    isSupport = true;
+
     await ctx.replyWithHTML(
       `Привет, @${ctx.from.username}! \n\n<b>Это связь с командой</b>⚙️ тех.поддержки проекта. \n\n<b>Напиши вопрос</b> в поле ввода сообщений. \n\nА если вопросов нет 👉 жми [Завершить диалог].`,
       Markup.inlineKeyboard([
         Markup.button.callback("❌📞Завершить диалог", "stopDialog"),
       ])
     );
+  });
+
+  if (isSupport) {
+    setTimeout(() => {
+      const res = request.get(
+        "https://api.telegram.org/bot5420356035:AAG_za1nsfUZvVDt-KBPJuMzLTqdOK2lOjw/getUpdates?offset=-1"
+      );
+      console.log(res);
+    }, 300);
+  }
+
+  bot.action("stopDialog", async (ctx) => {
+    ctx.scene.leave();
+    isSupport = false;
+    ctx.reply("Dialog ended");
   });
 
   bot.action("back", async (ctx) => {
